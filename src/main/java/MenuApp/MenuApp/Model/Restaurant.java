@@ -1,5 +1,7 @@
 package MenuApp.MenuApp.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,20 +20,24 @@ public class Restaurant {
     private String telephone;
 
 
-
+    public Restaurant() {
+    }
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
+    @JsonBackReference
     private Users user;
 
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    private List<Menu> MenuItems;
+    @JsonManagedReference
+    private List<Menu> menuItems;
 
+
+    @OneToMany(mappedBy = "restaurants", cascade = CascadeType.ALL)
+    private List<Order> orderings;
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    private List<Order> Orderings;
-
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    private List<Addresses> Address;
+    @JsonManagedReference
+    private List<Addresses> address;
 }

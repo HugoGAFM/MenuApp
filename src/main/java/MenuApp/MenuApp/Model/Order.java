@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "TB_Pedido")
 public class Order {
+
+    public Order() {
+
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,9 +31,10 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id", nullable = false)
-    private Restaurant restaurant;
+    private Restaurant restaurants;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Order_Item> items;
 
 }

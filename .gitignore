@@ -5,7 +5,9 @@ target/
 !**/src/test/**/target/
 
 /src/main/resources/application.properties
-/config/
+/src/main/java/MenuApp.MenuApp/config/SecurityConfig
+
+
 
 ### STS ###
 .apt_generated

@@ -1,5 +1,7 @@
 package MenuApp.MenuApp.Model;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,11 +11,15 @@ import lombok.Setter;
 @Entity
 @Table(name = "TB_user")
 public class Users {
+
+    public Users() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name_user;
-    private String Email;
+    private String email;
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -21,7 +27,8 @@ public class Users {
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Restaurant> Restaurant;
+    @JsonManagedReference
+    private List<Restaurant> restaurants;
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

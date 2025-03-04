@@ -1,5 +1,6 @@
 package MenuApp.MenuApp.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -11,6 +12,10 @@ import lombok.Setter;
 @Entity
 @Table (name = "TB_Enderecos")
 public class Addresses {
+
+    public Addresses() {
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +30,7 @@ public class Addresses {
 
 
     @ManyToOne
-    @JoinColumn(name = "TB_Restaurante")
+    @JoinColumn(name = "restaurante_id", nullable = false)
+    @JsonBackReference
     private Restaurant restaurant;
 }
