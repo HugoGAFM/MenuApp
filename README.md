@@ -28,7 +28,7 @@ O projeto foi construído utilizando as seguintes tecnologias:
 
 1️⃣ Clonar o Repositório
 
-git clone https://github.com/seu-usuario/MenuApp.git
+git clone https://github.com/hugoGAFM/MenuApp.git
 cd MenuApp
 
 ---
